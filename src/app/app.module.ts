@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -10,6 +10,13 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 import {provideFirestore, getFirestore} from '@angular/fire/firestore';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+  standalone: true
+})
 
 @NgModule({
   declarations: [AppComponent],

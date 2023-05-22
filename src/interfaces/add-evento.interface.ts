@@ -1,5 +1,5 @@
-export default interface AddEventoInterface {
-    id: string;
+export default interface EventoInterface {
+    id?: string;
     imagen: string;
     titulo: string;
     descripcion: string;
