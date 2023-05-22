@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true" class="no-scroll">
+  <ion-list>
+    <ion-item>
+      <ion-label>Imagen*</ion-label>
+      <ion-input
+        type="file"
+        class="form-control"
+        accept="image/*"
+        id="img" hidden>
+      </ion-input>
+      <!--<ion-button fill="outline" slot="end" id="btnImg">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>-->
+    </ion-item>
+    <ion-item>
+      <ion-label>Título*</ion-label>
+      <ion-input
+        type="text"
+        class="form-control"
+        placeholder="Nombre"
+        [counter]="true" maxlength="15"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Descripción*</ion-label>
+      <ion-input
+        type="text"
+        display="block"
+        class="form-control"
+        placeholder="Datos relevantes"
+        [counter]="true" maxlength="100"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Lugar*</ion-label>
+      <ion-input
+        type="text"
+        class="form-control"
+        placeholder="Dirección"
+        [counter]="true" maxlength="50">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Dia*</ion-label>
+      <ion-input
+        type="date"
+        class="form-control"
+        placeholder="Selecioa una fecha"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora*</ion-label>
+      <ion-input
+        type="time"
+        class="form-control"
+        placeholder="Selecioa una hora"
+      >
+      </ion-input>
+    </ion-item>
+    <br>
+    <ion-button color="primary" expand="block">Crear</ion-button>
+  </ion-list>
+</ion-content>
+
