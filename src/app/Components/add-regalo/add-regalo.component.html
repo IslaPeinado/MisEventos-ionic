@@ -1,0 +1,94 @@
+<p>
+  add-evento works!
+</p>
+<ion-content [fullscreen]="true" class="no-scroll">
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="Imagen"
+        type="file"
+        class="form-control"
+        accept="image/*"
+        id="img" hidden>
+      </ion-input>
+      <!--<ion-button fill="outline" slot="end" id="btnImg">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>-->
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Nombre*"
+        type="text"
+        class="form-control"
+        placeholder="Nombre"
+        [counter]="true" maxlength="15"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Descripción*"
+        type="text"
+        display="block"
+        class="form-control"
+        placeholder="Datos relevantes"
+        [counter]="true" maxlength="100"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Marca*"
+        type="text"
+        class="form-control"
+        placeholder="Marca"
+        [counter]="true" maxlength="50">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Color"
+        type="color"
+        class="form-control"
+        placeholder="Color">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Talla/Modelo"
+        type="text"
+        class="form-control"
+        placeholder="Talla o modelo"
+        [counter]="true" maxlength="20">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Precio*"
+        type="number"
+        class="form-control"
+        placeholder="Precio"
+        [counter]="true" maxlength="10">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Enlace"
+        type="text"
+        class="form-control"
+        placeholder="Enlace"
+        [counter]="true" maxlength="10">
+      </ion-input>
+    </ion-item>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" expand="block">Añadir otro</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="primary" expand="block">Finalizar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+
