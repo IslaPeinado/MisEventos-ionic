@@ -1,3 +1,96 @@
-<p>
-  add-evento works!
-</p>
+<ion-content [fullscreen]="true" class="no-scroll">
+  <ion-list lines="none">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-img [src]="imagePath" *ngIf="imagePath"></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input
+            label="Imagen"
+            type="file"
+            (change)="onFileSelected($event)"
+            class="form-control"
+            accept="image/*"
+            id="img" hidden>
+          </ion-input>
+          <ion-button fill="outline" slot="end" (click)="openFileInput()">
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Título*"
+        type="text"
+        class="form-control"
+        placeholder="Nombre"
+        [counter]="true" maxlength="15"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Descripción*"
+        type="text"
+        display="block"
+        class="form-control"
+        placeholder="Datos relevantes"
+        [counter]="true" maxlength="100"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Categoría*</ion-label>
+      <ion-select placeholder="Seleccionar categoría" > <!--[(ngModel)]="selectedCategory"-->
+        <ion-select-option value="cumpleaños">Cumpleaños</ion-select-option>
+        <ion-select-option value="aniversario">Aniversario</ion-select-option>
+        <ion-select-option value="boda">Boda</ion-select-option>
+        <ion-select-option value="comunion">Comunión</ion-select-option>
+        <ion-select-option value="bautizo">Bautizo</ion-select-option>
+        <ion-select-option value="baby-shower">Baby Shower</ion-select-option>
+        <ion-select-option value="graduación">Graduación</ion-select-option>
+        <ion-select-option value="navidad">Navidad</ion-select-option>
+        <ion-select-option value="inauguración">Inauguración</ion-select-option>
+        <ion-select-option value="despedida">Despedida</ion-select-option>
+        <ion-select-option value="promoción">Promoción</ion-select-option>
+        <ion-select-option value="jubilación">Jubilación</ion-select-option>
+        <ion-select-option value="amigoinvisible">Amigo invisible</ion-select-option>
+        <ion-select-option value="otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Lugar*"
+        type="text"
+        class="form-control"
+        placeholder="Marca"
+        [counter]="true" maxlength="50">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Día"
+        type="date"
+        class="form-control">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Hora"
+        type="time"
+        class="form-control">
+      </ion-input>
+    </ion-item>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" expand="block">Continuar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+

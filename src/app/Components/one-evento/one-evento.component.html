@@ -1,3 +1,37 @@
-<p>
-  one-evento works!
-</p>
+<ion-content [fullscreen]="true">
+
+  <!-- Evento -->
+  <ion-item >   <!--falta la lógica-->
+    <ion-thumbnail  slot="start">
+      <img alt="foto del evento" src="{{evento.fotoEvento}}">
+    </ion-thumbnail >
+    <h2>{{evento.tituloEvento}}</h2>
+    <p>{{evento.descripcionEvento}}</p>
+    <p>Anfitrión: {{evento.anfitrionEvento}}</p>
+    <p>Categoría: {{evento.categoriaEvento}}</p>
+    <p>Lugar: {{evento.lugarEvento}}</p>
+    <p>Fecha: {{evento.fechaEvento}}</p>
+    <p>Hora: {{evento.horaEvento}}</p>
+  </ion-item>
+
+  <!-- Regalo -->
+  <ng-container *ngFor="let regalo of regalos; let i = index">
+    <ion-content>
+      <ion-thumbnail  slot="start">
+        <img src="{{regalo.imagen}}" alt="foto regalo">
+      </ion-thumbnail>
+    </ion-content>
+    <ion-content>
+      <h2>{{regalo.nombreRegalo}}</h2>
+      <p>{{regalo.descripcionRegalo}}</p>
+      <p>Color: {{regalo.colorRegalo}}</p>
+      <p>Marca: {{regalo.marcaRegalo}}</p>
+      <p>Estado: {{regalo.tallaModeloRegalo}}</p>
+      <p>Precio: {{regalo.precioRegalo}}</p>
+      <ion-item href="{{regalo.enlaceRegalo}}">
+        <ion-label><ion-icon name="link-outline"></ion-icon> Enlace</ion-label>
+      </ion-item>
+    </ion-content>
+  </ng-container>
+</ion-content>
+

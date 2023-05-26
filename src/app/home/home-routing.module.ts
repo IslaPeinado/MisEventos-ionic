@@ -6,6 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+    loadComponent: () => import('../Components/tab-menu/tab-menu.component').then( m => m.TabMenuComponent)
   }
 ];
 
