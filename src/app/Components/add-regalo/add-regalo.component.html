@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true" class="no-scroll">
+  <ion-list lines="non">
+    <ion-item>
+      <ion-input
+        label="Imagen"
+        type="file"
+        class="form-control"
+        accept="image/*"
+        id="img" hidden>
+      </ion-input>
+      <!--<ion-button fill="outline" slot="end" id="btnImg">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>-->
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Nombre*"
+        type="text"
+        class="form-control"
+        placeholder="Nombre"
+        [counter]="true" maxlength="15"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Descripción*"
+        type="text"
+        display="block"
+        class="form-control"
+        placeholder="Datos relevantes"
+        [counter]="true" maxlength="100"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Marca*"
+        type="text"
+        class="form-control"
+        placeholder="Marca"
+        [counter]="true" maxlength="50">
+      </ion-input>
+    </ion-item>
+    <ion-button color="primary" expand="block">Continuar</ion-button>
+  </ion-list>
+</ion-content>

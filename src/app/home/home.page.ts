@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {TabMenuComponent} from "../Components/tab-menu/tab-menu.component";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,5 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
 
 }

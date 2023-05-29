@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let evento of eventos">
+      <ion-thumbnail slot="start">
+        <img alt="foto del evento" src="{{evento.fotoEvento}}">
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{evento.tituloEvento}}</h2>
+        <p>Anfitrión: {{evento.anfitrionEvento}}</p>
+        <p>Lugar: {{evento.lugarEvento}}</p>
+        <p>Fecha: {{evento.fechaEvento}}</p>
+        <p>Hora: {{evento.horaEvento}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

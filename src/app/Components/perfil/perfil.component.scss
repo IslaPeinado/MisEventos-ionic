@@ -1,0 +1,27 @@
+.profile-header {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-header img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.profile-stats div {
+  text-align: center;
+}
+
+.profile-posts img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
