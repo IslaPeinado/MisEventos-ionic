@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-add-regalo',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRegaloComponent  implements OnInit {
 
+  formRegalo: FormGroup;
+  constructor() {
+    this.formRegalo = new FormGroup({
 
-  constructor() { }
+    })
+  }
 
   ngOnInit() {}
 

@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { IonContent} from "@ionic/angular";
+import {Component, OnInit} from '@angular/core';
+import {IonContent} from "@ionic/angular";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-evento',
   templateUrl: './add-evento.component.html',
   styleUrls: ['./add-evento.component.scss'],
 })
-export class AddEventoComponent  implements OnInit {
+export class AddEventoComponent implements OnInit {
   public datoCat: string[] = [
     "Cumpleaños",
     "Aniversario",
@@ -25,11 +26,26 @@ export class AddEventoComponent  implements OnInit {
   ];
 
 
-  public categorias= [...this.datoCat]
+  public categorias = [...this.datoCat]
 
 
-  constructor() { }
+  formEvento: FormGroup;
 
-  ngOnInit() {}
+  constructor() {
+    this.formEvento = new FormGroup({
+      fotoEvento: new FormControl(Validators.required),
+      tituloEvento: new FormControl(Validators.required),
+      anfitrionEvento: new FormControl(Validators.required),
+      lugarEvento: new FormControl(Validators.required),
+      fechaEvento: new FormControl(Validators.required),
+      horaEvento: new FormControl(Validators.required),
+    })
+  }
+
+
+  ngOnInit() {
+  }
+
+  onSubmit() {}
 
 }
