@@ -1,38 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{username}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="profile-header">
-    <img src="{{profilePicture}}" alt="Profile Picture">
-    <h2>{{fullName}}</h2>
-    <p>{{bio}}</p>
-  </div>
-
-  <div class="profile-stats">
-    <div>
-      <h3>{{posts}}</h3>
-      <p>Posts</p>
-    </div>
-    <div>
-      <h3>{{followers}}</h3>
-      <p>Followers</p>
-    </div>
-    <div>
-      <h3>{{following}}</h3>
-      <p>Following</p>
+  <div class="profile">
+    <div class="profile-header">
+      <div class="profile-picture">
+        <img src="{{ user.fotoPerfil }}" alt="Foto de Perfil" />
+      </div>
+      <div class="profile-info">
+        <h2>{{ user.nombre }} {{ user.apellidos }}</h2>
+        <p>{{ user.descripcion }}</p>
+      </div>
     </div>
   </div>
 
-  <div class="profile-posts">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4" *ngFor="let post of posts">
-          <img src="{{post.imageUrl}}" alt="Post Image">
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+  <ion-list class="settings">
+    <ion-item>
+      <ion-label>Notificaciones</ion-label>
+      <ion-toggle [(ngModel)]="settings.notificaciones"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tema</ion-label>
+      <ion-toggle [(ngModel)]="settings.tema"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ayuda</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Información</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,29 +1,18 @@
 <ion-content [fullscreen]="true">
   <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let evento of eventos" (click)="redirectToEvent(evento.eventoId)">
-      <ion-card color="none">
-        <ion-card-content>
-          <!--<ion-grid>
-            <ion-row>-->
-              <ion-col>
-                <ion-thumbnail  slot="start">
-                  <img alt="foto del evento" src="{{evento.foto}}">
-                </ion-thumbnail >
-              </ion-col>
-              <ion-col>
-                <ion-label>
-                  <h2>{{evento.tituloEvento}}</h2>
-                  <p>Anfitrión: {{evento.anfitrion}}</p>
-                  <p>Lugar: {{evento.lugar}}</p>
-                  <p>Fecha: {{evento.fecha}}</p>
-                  <p>Hora: {{evento.hora}}</p>
-                </ion-label>
-              </ion-col>
-            <!--</ion-row>
-          </ion-grid>-->
-        </ion-card-content>
-      </ion-card>
+    <ion-item *ngFor="let evento of eventos">
+      <ion-thumbnail slot="start">
+        <img alt="foto del evento" src="{{evento.fotoEvento}}">
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{evento.tituloEvento}}</h2>
+        <p>Anfitrión: {{evento.anfitrionEvento}}</p>
+        <p>Lugar: {{evento.lugarEvento}}</p>
+        <p>Fecha: {{evento.fechaEvento}}</p>
+        <p>Hora: {{evento.horaEvento}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

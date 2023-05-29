@@ -7,17 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent  implements OnInit {
 
-  username: string = 'username';
-  fullName: string = 'Full Name';
-  bio: string = 'Bio text goes here';
-  profilePicture: string = 'path/to/profile-picture.jpg';
-  posts: any[] = [
-    { imageUrl: 'path/to/post-image1.jpg' },
-    { imageUrl: 'path/to/post-image2.jpg' },
-    { imageUrl: 'path/to/post-image3.jpg' },
-  ];
-  followers: number = 1000;
-  following: number = 500;
+  user = {
+    fotoPerfil: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxU2Uh_HkAue3ZpgTltBywAypMS39yrMWEDw&usqp=CAU',
+    nombre: 'Isla',
+    apellidos: 'Peinado Henríquez',
+    descripcion: '¡Hola! Soy Isla Peinado Henríquez. Me gusta la programación y el diseño web.',
+  };
+
+  settings = {
+    notificaciones: true,
+    tema: false,
+  };
+
 
   constructor() {}
 

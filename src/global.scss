@@ -24,3 +24,65 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+/* Isla */
+
+ion-thumbnail {
+  --margin: 0;
+  --padding: 0;
+  --size: 100px;
+  --border-radius: 14px;
+}
+
+ion-card-content, ion-card {
+  --padding: 0, 0, 0, 0px  !important;
+  --margin:  0, 0, 0, 0px !important;
+  --border:  0, 0, 0, 0px !important;
+}
+
+.eventos-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.profile {
+  padding: 1px;
+}
+
+.profile-header {
+  display: flex;
+  text-align: left;
+}
+
+.profile-picture img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+}
+
+.settings {
+  margin-top: 10px;
+}
+
+

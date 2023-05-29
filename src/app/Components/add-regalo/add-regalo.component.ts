@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRegaloComponent  implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IonContent} from "@ionic/angular";
 
 @Component({
   selector: 'app-add-evento',
@@ -6,24 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-evento.component.scss'],
 })
 export class AddEventoComponent  implements OnInit {
+  public datoCat: string[] = [
+    "Cumpleaños",
+    "Aniversario",
+    "Boda",
+    "Comunión",
+    "Bautizo",
+    "Baby Shower",
+    "Graduación",
+    "Navidad",
+    "Inauguración",
+    "Despedida",
+    "Promoción",
+    "Jubilación",
+    "Amigo invisible",
+    "Otro"
+  ];
 
-  //imagePath: string;
-//
-  //onFileSelected(event: any) {
-  //  const file: File = event.target.files[0];
-  //  const reader = new FileReader();
-//
-  //  reader.onload = (e: any) => {
-  //    this.imagePath = e.target.result;
-  //  };
-//
-  //  reader.readAsDataURL(file);
-  //}
-//
-  //openFileInput() {
-  //  const fileInput: HTMLInputElement = document.querySelector('#img');
-  //  fileInput.click();
-  //}
+
+  public categorias= [...this.datoCat]
+
 
   constructor() { }
 

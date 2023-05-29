@@ -1,26 +1,17 @@
 <ion-content [fullscreen]="true" class="no-scroll">
+  <div class="eventos-content">
   <ion-list lines="none">
     <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-img [src]="imagePath" *ngIf="imagePath"></ion-img>
-          </ion-col>
-          <ion-col size="8">
-            <ion-input
-            label="Imagen"
-            type="file"
-            (change)="onFileSelected($event)"
-            class="form-control"
-            accept="image/*"
-            id="img" hidden>
-          </ion-input>
-          <ion-button fill="outline" slot="end" (click)="openFileInput()">
-            <ion-icon name="camera"></ion-icon>
-          </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-input
+        label="Imagen"
+        type="file"
+        class="form-control"
+        accept="image/*"
+        id="img" hidden>
+      </ion-input>
+      <!--<ion-button fill="outline" slot="end" id="btnImg">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>-->
     </ion-item>
     <ion-item>
       <ion-input
@@ -44,22 +35,10 @@
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Categoría*</ion-label>
-      <ion-select placeholder="Seleccionar categoría" > <!--[(ngModel)]="selectedCategory"-->
-        <ion-select-option value="cumpleaños">Cumpleaños</ion-select-option>
-        <ion-select-option value="aniversario">Aniversario</ion-select-option>
-        <ion-select-option value="boda">Boda</ion-select-option>
-        <ion-select-option value="comunion">Comunión</ion-select-option>
-        <ion-select-option value="bautizo">Bautizo</ion-select-option>
-        <ion-select-option value="baby-shower">Baby Shower</ion-select-option>
-        <ion-select-option value="graduación">Graduación</ion-select-option>
-        <ion-select-option value="navidad">Navidad</ion-select-option>
-        <ion-select-option value="inauguración">Inauguración</ion-select-option>
-        <ion-select-option value="despedida">Despedida</ion-select-option>
-        <ion-select-option value="promoción">Promoción</ion-select-option>
-        <ion-select-option value="jubilación">Jubilación</ion-select-option>
-        <ion-select-option value="amigoinvisible">Amigo invisible</ion-select-option>
-        <ion-select-option value="otro">Otro</ion-select-option>
+      <ion-select label="Categoría*" placeholder="selecionar una">
+        <div *ngFor="let cat of categorias">
+          <ion-select-option value="{{cat}}">{{cat}}</ion-select-option>
+        </div>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -92,5 +71,5 @@
       </ion-col>
     </ion-row>
   </ion-list>
+  </div>
 </ion-content>
-
