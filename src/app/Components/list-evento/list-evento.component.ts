@@ -61,10 +61,18 @@ export class ListEventoComponent implements OnInit {
   public eventos = [...this.datoEvento];
 
 
-
   handleInput(event: any) {
-    this.eventos = this.datoEvento.filter(item => item.tituloEvento.includes(event.target.value))
+    const searchTerm = event.target.value.toLowerCase();
+    this.eventos = this.datoEvento.filter(item =>
+      item.tituloEvento.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm) ||
+      item.anfitrionEvento.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm) ||
+      item.lugarEvento.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm) ||
+      item.fechaEvento.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm) ||
+      item.horaEvento.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(searchTerm)
+    );
   }
+
+
 
   ngOnInit(): void {
   }

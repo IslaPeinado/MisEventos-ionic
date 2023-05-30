@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {IonContent} from "@ionic/angular";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {EventoService} from "../../../services/evento.service";
 
 @Component({
   selector: 'app-add-evento',
@@ -31,9 +31,11 @@ export class AddEventoComponent implements OnInit {
 
   formEvento: FormGroup;
 
-  constructor() {
+  constructor(
+    private eventoService: EventoService
+  ) {
     this.formEvento = new FormGroup({
-      fotoEvento: new FormControl(Validators.required),
+      fotoEvento: new FormControl(),
       tituloEvento: new FormControl(Validators.required),
       anfitrionEvento: new FormControl(Validators.required),
       lugarEvento: new FormControl(Validators.required),
@@ -46,6 +48,9 @@ export class AddEventoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {}
+  async onSubmit() {
+    const response = await this.eventoService.addEvento(this.formEvento.value);
+    console.log(response);
+  }
 
 }

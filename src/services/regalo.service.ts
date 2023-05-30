@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Firestore} from "@angular/fire/firestore";
+import {addDoc, collection, Firestore} from "@angular/fire/firestore";
+import {RegaloInterface} from "../interfaces/regalo.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -9,4 +10,9 @@ export class RegaloService {
   constructor(
     private firestore: Firestore
   ) { }
+
+  addRegalo(regalo: RegaloInterface){
+    const regaloRef= collection(this.firestore, 'regalos')
+    return addDoc(regaloRef, regalo);
+  }
 }
