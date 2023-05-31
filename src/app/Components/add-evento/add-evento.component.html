@@ -1,75 +1,73 @@
 <ion-content [fullscreen]="true" class="no-scroll">
-  <div class="eventos-content">
-  <ion-list lines="none">
-    <ion-item>
-      <ion-input
-        label="Imagen"
-        type="file"
-        class="form-control"
-        accept="image/*"
-        id="img" hidden>
-      </ion-input>
-      <!--<ion-button fill="outline" slot="end" id="btnImg">
-        <ion-icon name="camera"></ion-icon>
-      </ion-button>-->
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Título*"
-        type="text"
-        class="form-control"
-        placeholder="Nombre"
-        [counter]="true" maxlength="15"
-      >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Descripción*"
-        type="text"
-        display="block"
-        class="form-control"
-        placeholder="Datos relevantes"
-        [counter]="true" maxlength="100"
-      >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-select label="Categoría*" placeholder="selecionar una">
-        <div *ngFor="let cat of categorias">
-          <ion-select-option value="{{cat}}">{{cat}}</ion-select-option>
-        </div>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Lugar*"
-        type="text"
-        class="form-control"
-        placeholder="Marca"
-        [counter]="true" maxlength="50">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Día"
-        type="date"
-        class="form-control">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Hora"
-        type="time"
-        class="form-control">
-      </ion-input>
-    </ion-item>
-    <br>
-    <ion-row>
-      <ion-col>
-        <ion-button color="primary" expand="block">Continuar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-list>
-  </div>
+  <form [formGroup]="formEvento" (ngSubmit)="onSubmit()">
+    <ion-list lines="none">
+      <!--<ion-item>
+        <ion-input
+          formControlName="imagenEvento"
+          label="Imagen"
+          type="file"
+          class="form-control"
+          accept="image/*"
+          id="img" hidden>
+        </ion-input>
+        <ion-button fill="outline" slot="end" id="btnImg">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </ion-item>-->
+      <ion-item>
+        <ion-input
+          formControlName="tituloEvento"
+          label="Título*"
+          type="text"
+          class="form-control"
+          placeholder="Nombre"
+          [counter]="true" maxlength="15"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="descripcionEvento"
+          label="Descripción*"
+          type="text"
+          class="form-control"
+          placeholder="Datos relevantes"
+          [counter]="true" maxlength="100"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="lugarEvento"
+          label="Lugar*"
+          type="text"
+          class="form-control"
+          placeholder="Lugar"
+          [counter]="true" maxlength="50">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="diaEvento"
+          label="Día"
+          type="date"
+          class="form-control">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="horaEvento"
+          label="Hora"
+          type="time"
+          class="form-control">
+        </ion-input>
+      </ion-item>
+      <br>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="primary" expand="block">Continuar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
 </ion-content>

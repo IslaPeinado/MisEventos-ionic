@@ -58,8 +58,8 @@ ion-card-content, ion-card {
 }
 
 .profile-picture img {
-  width: 60px;
-  height: 60px;
+  width: 80px !important;
+  height: 80px !important;
   border-radius: 50%;
   margin-right: 20px;
 }
@@ -70,13 +70,13 @@ ion-card-content, ion-card {
 
 .profile-info h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   text-align: left;
 }
 
 .profile-info p {
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   color: #666;
   text-align: left;
 }
@@ -84,5 +84,11 @@ ion-card-content, ion-card {
 .settings {
   margin-top: 10px;
 }
+
+ion-searchbar.custom {
+  --border-radius: 40px;
+}
+
+
 
 
