@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+  <ion-title>Registro</ion-title>
+  <form [formGroup]="FormRegister" (ngSubmit)="onSubmit()">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-input
+          type="email"
+          fill="solid"
+          label="Email"
+          labelPlacement="floating"
+          formControlName="email"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-input
+          type="password"
+          fill="solid"
+          label="Contraseña"
+          labelPlacement="floating"
+          formControlName="password"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Acepto los <a routerLink="/terminosycondiciones">Términos y Condiciones</a></ion-label>
+        <ion-checkbox formControlName="terms" (ionChange)="handleTermsChange($event)"></ion-checkbox>
+      </ion-item>
+      <br>
+      <ion-button expand="block" type="submit" [disabled]="!FormRegister.controls['terms'].value">Enviar</ion-button>
+
+      <p>¿Ya tienes cuenta?  <a routerLink="/login">Iniciar sesión</a></p>
+
+    </ion-list>
+  </form>
+</ion-content>
+

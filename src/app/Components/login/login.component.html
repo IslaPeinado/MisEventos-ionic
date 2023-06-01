@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <ion-title>Iniciar sesión</ion-title>
+  <form [formGroup]="FormLogin" (ngSubmit)="onSubmit()">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-input
+          type="email"
+          fill="solid"
+          label="Email"
+          labelPlacement="floating"
+          formControlName="email"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-input
+          type="password"
+          fill="solid"
+          label="Contraseña"
+          labelPlacement="floating"
+          formControlName="password"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button expand="block" type="submit">Enviar</ion-button>
+      <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+
+      <p> Otras formas de iniciar sesión </p>
+      <ion-button expand="block" (click)="loginGoogle()">Google</ion-button>
+    </ion-list>
+  </form>
+</ion-content>
+

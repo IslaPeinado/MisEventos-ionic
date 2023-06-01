@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-perfil',
@@ -20,8 +22,20 @@ export class PerfilComponent  implements OnInit {
   };
 
 
-  constructor() {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
+
+  onClick() {
+    this.userService.logout()
+      .then(() => {
+        this.router.navigate(['/login']);
+        console.log('Sesión cerrada')
+      })
+      .catch(error => console.log(error));
+  }
 
 }

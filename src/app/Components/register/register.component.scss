@@ -1,0 +1,27 @@
+.terms-card {
+  margin: 20px;
+}
+
+.terms-text {
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+
+.terms-modal {
+  --width: 80vw;
+  --height: 60vh;
+  --max-width: 400px;
+  --max-height: 500px;
+
+  ion-content {
+    --height: var(--height);
+    --max-height: var(--max-height);
+  }
+}
+
+.terms-text {
+  margin-bottom: 10px;
+  text-align: justify;
+  overflow-y: auto;
+}
