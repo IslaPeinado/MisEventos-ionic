@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {EventoService} from "../../../services/evento.service";
 import EventoInterface from "../../../interface/evento.interface";
+import {Router} from "@angular/router";
+import { Storage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-list-evento',
@@ -13,17 +15,11 @@ export class ListEventoComponent implements OnInit {
   eventos: EventoInterface[];
 
   constructor(
+    private router: Router,
     private eventoService: EventoService,
+    private storage: Storage
   ) {
-    this.eventos = [
-      {
-        tituloEvento: '',
-        descripcionEvento: '',
-        lugarEvento: '',
-        diaEvento: '',
-        horaEvento: '',
-      }
-    ];
+    this.eventos = [];
   }
 
 
@@ -47,6 +43,10 @@ export class ListEventoComponent implements OnInit {
     );
   }
 
-
+  onclick(idEvento: string) {
+   if (idEvento) {
+      this.router.navigate(['/evento', idEvento]);
+    }
+  }
 
 }

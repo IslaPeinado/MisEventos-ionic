@@ -33,6 +33,8 @@ export class LoginComponent  implements OnInit {
         this.presentToast('Iniciando sesión...');
       })
       .catch((error) => {
+        console.log(this.FormLogin.value.email, this.FormLogin.value.password);
+        console.log('entra en error');
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
@@ -62,7 +64,7 @@ export class LoginComponent  implements OnInit {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000, // Duración del Toast en milisegundos
-      position: 'bottom'
+      position: 'middle'
     });
     toast.present();
   }

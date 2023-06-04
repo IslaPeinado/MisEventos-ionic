@@ -8,16 +8,17 @@
   <ion-searchbar class="custom" [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let evento of eventos">
-      <!--<ion-thumbnail slot="start">
-        <img alt="foto del evento" src="{{evento.fotoEvento}}">
-      </ion-thumbnail>-->
-
-      <ion-label>
-        <h2>{{evento.tituloEvento}}</h2>
-        <p>Lugar: {{evento.lugarEvento}}</p>
-        <p>Fecha: {{evento.diaEvento}}</p>
-        <p>Hora: {{evento.horaEvento}}</p>
-      </ion-label>
+      <ion-item (click)="goToEvento(evento)">
+        <ion-thumbnail slot="start">
+          <img alt="foto del evento" src="{{evento.fotoEvento}}">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{evento.tituloEvento}}</h2>
+          <p>Lugar: {{evento.lugarEvento}}</p>
+          <p>Fecha: {{evento.diaEvento}}</p>
+          <p>Hora: {{evento.horaEvento}}</p>
+        </ion-label>
+      </ion-item>
     </ion-item>
   </ion-list>
 </ion-content>

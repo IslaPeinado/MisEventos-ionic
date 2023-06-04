@@ -1,47 +1,89 @@
 <ion-content [fullscreen]="true" class="no-scroll">
-  <ion-list lines="non">
-    <ion-item>
-      <ion-input
-        label="Imagen"
-        type="file"
-        class="form-control"
-        accept="image/*"
-        id="img" hidden>
-      </ion-input>
-      <!--<ion-button fill="outline" slot="end" id="btnImg">
-        <ion-icon name="camera"></ion-icon>
-      </ion-button>-->
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Nombre*"
-        type="text"
-        class="form-control"
-        placeholder="Nombre"
-        [counter]="true" maxlength="15"
-      >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Descripción*"
-        type="text"
-        display="block"
-        class="form-control"
-        placeholder="Datos relevantes"
-        [counter]="true" maxlength="100"
-      >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Marca*"
-        type="text"
-        class="form-control"
-        placeholder="Marca"
-        [counter]="true" maxlength="50">
-      </ion-input>
-    </ion-item>
-    <ion-button color="primary" expand="block">Continuar</ion-button>
-  </ion-list>
+  <form [formGroup]="formRegalo" (ngSubmit)="onSubmit()">
+    <ion-list lines="non">
+      <ion-item>
+        <ion-input
+          label="Imagen"
+          type="file"
+          class="form-control"
+          accept="image/*"
+          id="img" hidden>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="nombreRegalo"
+          label="Nombre*"
+          type="text"
+          class="form-control"
+          placeholder="Nombre"
+          [counter]="true"
+          maxlength="15">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="descripcionRegalo"
+          label="Descripción*"
+          type="text"
+          class="form-control"
+          placeholder="Datos relevantes"
+          [counter]="true"
+          maxlength="100">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="marcaRegalo"
+          label="Marca*"
+          type="text"
+          class="form-control"
+          placeholder="Marca"
+          [counter]="true"
+          maxlength="50">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="tallaRegalo"
+          label="Talla/Modelo"
+          type="text"
+          class="form-control"
+          placeholder="Talla o modelo"
+          [counter]="true"
+          maxlength="20">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="precioRegalo"
+          label="Precio*"
+          type="price"
+          class="form-control"
+          placeholder="Precio"
+          [counter]="true"
+          maxlength="10">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="linkRegalo"
+          label="Enlace"
+          type="text"
+          class="form-control"
+          placeholder="Enlace"
+          [counter]="true"
+          maxlength="10">
+        </ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button color="primary" expand="block" routerLink="/inicio/">Añadir otro</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="primary" expand="block" routerLink="/inicio/list-evento">Finalizar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
 </ion-content>

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {TabMenuComponent} from "./Components/tab-menu/tab-menu.component";
 import {canActivate, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import {OneEventoComponent} from "./Components/one-evento/one-evento.component";
 
 const routes: Routes = [
 
@@ -55,6 +56,10 @@ const routes: Routes = [
         ...canActivate(() => redirectUnauthorizedTo(['/login']))
       }
       ]
+  },
+  {
+    path: 'evento/:idEvento',
+    component: OneEventoComponent
   }
 
 ];

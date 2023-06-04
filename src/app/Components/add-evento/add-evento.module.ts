@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   declarations: [AddEventoComponent],
   exports: [AddEventoComponent],
-    imports: [IonicModule, RouterModule.forChild([{path: '', component: AddEventoComponent}]), ReactiveFormsModule]
+  imports: [IonicModule, RouterModule.forChild([{path: '', component: AddEventoComponent}]), ReactiveFormsModule]
 })
-export class AddEventoModule {}
+export class AddEventoModule {
+}

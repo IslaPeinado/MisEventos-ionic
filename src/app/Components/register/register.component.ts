@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
     if (this.FormRegister.valid) {
       this.userService.register(this.FormRegister.value.email, this.FormRegister.value.password)
         .then((userCredential) => {
+          this.userService
           const user = userCredential.user;
           console.log(user);
           this.router.navigate(['/login']);
@@ -86,5 +87,19 @@ export class RegisterComponent implements OnInit {
   acceptTerms() {
     this.termsAccepted = true;
     this.showTermsModal = false;
+  }
+
+  loginGoogle() {
+    this.userService.loginWithGoogle()
+      .then(response => {
+        this.router.navigate(['/inicio/list-evento']);
+        console.log(response);
+        this.presentToast('Iniciando sesión...');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   }
 }
