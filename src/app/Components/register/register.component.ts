@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { UserService } from "../../../services/user.service";
-import { Router } from "@angular/router";
-import { ToastController, ModalController } from "@ionic/angular";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../../services/user.service";
+import {Router} from "@angular/router";
+import {ToastController} from "@ionic/angular";
+import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-register',
@@ -13,16 +15,23 @@ export class RegisterComponent implements OnInit {
   FormRegister: FormGroup;
   showTermsModal = false;
   termsAccepted = false;
+  confirmPasswordInvalid = false;
+  private imagenes: any[];
+
 
   constructor(
     private userService: UserService,
     private router: Router,
     private toastController: ToastController,
-    private modalController: ModalController
+    private storage: Storage
   ) {
+    this.imagenes = [];
     this.FormRegister = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', Validators.required),
+      displayName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      photoURL: new FormControl(),
       terms: new FormControl(false, Validators.requiredTrue)
     });
   }
@@ -31,19 +40,24 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.FormRegister.valid) {
-      this.userService.register(this.FormRegister.value.email, this.FormRegister.value.password)
-        .then((userCredential) => {
-          this.userService
+      const email = this.FormRegister.value.email;
+      const password = this.FormRegister.value.password;
+      const displayName = this.FormRegister.value.displayName;
+      const photoURL = this.FormRegister.value.imagenes;
+
+      this.userService
+        .register(email, password, displayName, photoURL)
+        .then(userCredential => {
           const user = userCredential.user;
           console.log(user);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/inicio/list-evento']);
           this.presentToast('Se ha registrado correctamente');
         })
-        .catch((error) => {
+        .catch(error => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
-          let toastMessage = '';
+          let toastMessage;
           switch (errorCode) {
             case 'auth/invalid-email':
               toastMessage = 'Por favor, ingresa un email válido.';
@@ -55,11 +69,21 @@ export class RegisterComponent implements OnInit {
               toastMessage = 'El email ya está en uso por otro usuario.';
               break;
             default:
-              toastMessage = 'Ha ocurrido un error. Por favor, inténtalo nuevamente.';
+              toastMessage =
+                'Ha ocurrido un error. Por favor, inténtalo nuevamente.';
               break;
           }
-          this.presentToast(toastMessage);
+          this.presentToast(toastMessage).then(r =>
+            console.log(r));
         });
+    }
+  }
+
+  handleTermsChange(event: any) {
+    if (event.detail.checked) {
+      this.showTermsModal = true;
+    } else {
+      this.termsAccepted = false;
     }
   }
 
@@ -72,34 +96,33 @@ export class RegisterComponent implements OnInit {
     toast.present();
   }
 
-  handleTermsChange(event:any) {
-    if (event.detail.checked) {
-      this.showTermsModal = true;
-    } else {
-      this.termsAccepted = false;
-    }
-  }
+  uploadImage($event: any) {
+    const file = $event.target.files[0];
+    console.log(file);
 
-  dismissTermsModal() {
-    this.showTermsModal = false;
-  }
+    const imgRef = ref(this.storage, `imagenes/${file.name}`);
 
-  acceptTerms() {
-    this.termsAccepted = true;
-    this.showTermsModal = false;
-  }
-
-  loginGoogle() {
-    this.userService.loginWithGoogle()
+    uploadBytes(imgRef, file)
       .then(response => {
-        this.router.navigate(['/inicio/list-evento']);
-        console.log(response);
-        this.presentToast('Iniciando sesión...');
+        console.log(response)
+        this.getImages();
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+      .catch(error => console.log(error));
   }
+
+  getImages() {
+    const imagesRef = ref(this.storage, 'images');
+
+    listAll(imagesRef)
+      .then(async response => {
+        console.log(response);
+        this.imagenes = [];
+        for (let item of response.items) {
+          const url = await getDownloadURL(item);
+          this.imagenes.push(url);
+        }
+      })
+      .catch(error => console.log(error));
+  }
+
 }

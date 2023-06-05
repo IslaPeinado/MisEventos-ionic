@@ -1,34 +1,57 @@
 import {Injectable} from '@angular/core';
-import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, query, where} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {addDoc, collection, collectionData, deleteDoc, doc, Firestore} from '@angular/fire/firestore';
+import {BehaviorSubject, Observable} from 'rxjs';
 import EventoInterface from "../interface/evento.interface";
 import RegaloInterface from "../interface/regalo.interface";
-import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
+import {Storage} from '@angular/fire/storage';
+import {UserService} from "./user.service";
+import {Auth, User} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
+  currentUserSubject: BehaviorSubject<User | null>;
   private imagenes: any[];
 
   constructor(
+    private auth: Auth,
     private firestore: Firestore,
-    private storage: Storage) {
+    private userService: UserService,
+    private storage: Storage
+  ) {
+    this.currentUserSubject = new BehaviorSubject<User | null>(null);
     this.imagenes = [];
   }
 
+// ------------------ USUARIOS ------------------
+
+  getCurrentUser(): BehaviorSubject<User | null> {
+    return this.currentUserSubject;
+  }
 
 // ------------------ EVENTOS ------------------
+
   addEvento(evento: EventoInterface) {
-    const eventoRef = collection(this.firestore, 'eventos');
-    return addDoc(eventoRef, evento);
+    const user = this.auth.currentUser; // Obtener el usuario actualmente autenticado
+    if (user) {
+      evento.usuarioId = user.uid; // Asignar el ID del usuario al evento
+      const eventoRef = collection(this.firestore, 'eventos');
+      return addDoc(eventoRef, evento);
+    } else {
+      return Promise.reject(new Error('No hay usuario autenticado')); // Manejar el caso de que no haya usuario autenticado
+    }
   }
+
+  //addEvento(evento: EventoInterface) {
+  //  const eventoRef = collection(this.firestore, 'eventos');
+  //  return addDoc(eventoRef, evento);
+  //}
 
   getEventos(): Observable<EventoInterface[]> {
     const eventoRef = collection(this.firestore, 'eventos');
     return collectionData(eventoRef, {idField: 'idEvento'}) as Observable<EventoInterface[]>;
   }
-
 
 
   deleteEvento(evento: EventoInterface) {
@@ -56,35 +79,34 @@ export class EventoService {
 
 // ------------------ IMAGENES ------------------
 
-  uploadImage($event: any) {
-    const file = $event.target.files[0];
-    console.log(file);
-
-    const imgRef = ref(this.storage, `imagenes/${file.name}`);
-
-    uploadBytes(imgRef, file)
-      .then(response => {
-        console.log(response)
-        this.getImages();
-      })
-      .catch(error => console.log(error));
-
-  }
-
-  getImages() {
-    const imagesRef = ref(this.storage, 'images');
-
-    listAll(imagesRef)
-      .then(async response => {
-        console.log(response);
-        this.imagenes = [];
-        for (let item of response.items) {
-          const url = await getDownloadURL(item);
-          this.imagenes.push(url);
-        }
-      })
-      .catch(error => console.log(error));
-  }
-
+  //uploadImage($event: any) {
+  //  const file = $event.target.files[0];
+  //  console.log(file);
+//
+  //  const imgRef = ref(this.storage, `imagenes/${file.name}`);
+//
+  //  uploadBytes(imgRef, file)
+  //    .then(response => {
+  //      console.log(response)
+  //      this.getImages();
+  //    })
+  //    .catch(error => console.log(error));
+  //}
+//
+  //getImages() {
+  //  const imagesRef = ref(this.storage, 'images');
+//
+  //  listAll(imagesRef)
+  //    .then(async response => {
+  //      console.log(response);
+  //      this.imagenes = [];
+  //      for (let item of response.items) {
+  //        const url = await getDownloadURL(item);
+  //        this.imagenes.push(url);
+  //      }
+  //    })
+  //    .catch(error => console.log(error));
+  //}
+//
 
 }

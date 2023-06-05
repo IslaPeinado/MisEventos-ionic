@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {TabMenuComponent} from "./Components/tab-menu/tab-menu.component";
 import {canActivate, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
-import {OneEventoComponent} from "./Components/one-evento/one-evento.component";
 
 const routes: Routes = [
 
@@ -21,15 +20,18 @@ const routes: Routes = [
   },
   {
     path: 'terminosycondiciones',
-    loadChildren: () => import('./Components/terminos/terminos.module').then(m => m.TerminosModule)
+    loadChildren: () => import('./Components/terminos/terminos.module').then(m => m.TerminosModule),
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'informacion',
-    loadChildren: () => import('./Components/info/info.module').then(m => m.InfoModule)
+    loadChildren: () => import('./Components/info/info.module').then(m => m.InfoModule),
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'ayuda',
-    loadChildren: () => import('./Components/ayuda/ayuda.module').then(m => m.AyudaModule)
+    loadChildren: () => import('./Components/ayuda/ayuda.module').then(m => m.AyudaModule),
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'inicio',
@@ -57,10 +59,7 @@ const routes: Routes = [
       }
       ]
   },
-  {
-    path: 'evento/:idEvento',
-    component: OneEventoComponent
-  }
+
 
 ];
 

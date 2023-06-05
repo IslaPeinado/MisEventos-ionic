@@ -22,28 +22,57 @@
             formControlName="password"></ion-input>
         </ion-item>
       </ion-card-content>
+      <ion-card-content>
+        <ion-item>
+          <ion-input
+            type="password"
+            fill="solid"
+            label="Confirmar contraseña"
+            labelPlacement="floating"
+            formControlName="confirmPassword"></ion-input>
+        </ion-item>
+      </ion-card-content>
+      <div *ngIf="confirmPasswordInvalid" class="error-message">
+        Las contraseñas no coinciden.
+      </div>
+      <ion-card-content>
+        <ion-item>
+          <ion-input
+            type="text"
+            fill="solid"
+            label="Nombre y apellido/s"
+            labelPlacement="floating"
+            formControlName="displayName"></ion-input>
+        </ion-item>
+      </ion-card-content>
+      <ion-card-content>
+        <ion-item>
+          <ion-input
+            formControlName="photoURL"
+            label="Imagen"
+            type="file"
+            class="form-control"
+            accept="image/*"
+            id="img"
+            hidden
+            (change)="uploadImage($event)">
+          </ion-input>
+
+          <!--<ion-button fill="outline" slot="end" id="btnImg">
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>-->
+        </ion-item>
+      </ion-card-content>
       <ion-item>
         <ion-label>Acepto los <a routerLink="/terminosycondiciones">Términos y Condiciones</a></ion-label>
         <ion-checkbox formControlName="terms" (ionChange)="handleTermsChange($event)"></ion-checkbox>
       </ion-item>
       <br>
-      <ion-button expand="block" shape="round" size="large" expand="block" type="submit"
+      <ion-button expand="block" shape="round" expand="block" type="submit"
                   [disabled]="!FormRegister.controls['terms'].value">Enviar
       </ion-button>
-
-      <ion-card-content class="ion-text-center">¿Ya tienes cuenta? <a routerLink="/login">Iniciar sesión</a></ion-card-content>
-
-      <!--<ion-grid>
-        <ion-row>
-          <ion-col size="2" offset="4">
-            <ion-button expand="content" color="danger" fill="outline" shape="round" (click)="loginGoogle()"
-                        routerLink="/inicio/list-evento" class="google-login">
-              <ion-icon name="logo-google"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>-->
-
+      <ion-card-content class="ion-text-center">¿Ya tienes cuenta? <a routerLink="/login">Iniciar sesión</a>
+      </ion-card-content>
     </ion-list>
   </form>
 </ion-card-content>
