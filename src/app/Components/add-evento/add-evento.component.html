@@ -3,9 +3,10 @@
     <ion-list lines="none">
       <ion-item>
         <ion-input
-          formControlName="imagenEvento"
+          formControlName="fotoEvento"
           label="Imagen"
           type="file"
+          (change)="uploadImage($event)"
           class="form-control"
           accept="image/*"
           id="img" hidden>
@@ -21,7 +22,7 @@
           type="text"
           class="form-control"
           placeholder="Nombre"
-          [counter]="true" maxlength="15"
+          [counter]="true" maxlength="30"
         >
         </ion-input>
       </ion-item>

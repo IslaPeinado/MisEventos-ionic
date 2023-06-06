@@ -2,11 +2,10 @@
   <div class="profile">
     <div class="profile-header">
       <div class="profile-picture">
-        <img src="{{ user.fotoPerfil }}" alt="Foto de Perfil" />
+        <img src="{{ user.photoURL }}" alt="Foto de Perfil" />
       </div>
       <div class="profile-info">
-        <h2>{{ user.nombre }} {{ user.apellidos }}</h2>
-        <p>{{ user.descripcion }}</p>
+        <h2>{{ user.displayName }}</h2>
       </div>
     </div>
   </div>
@@ -36,6 +35,12 @@
       <ion-label>
         <ion-icon name="information-circle-outline"></ion-icon>
         Información
+      </ion-label>
+    </ion-item>
+    <ion-item routerLink="/ajustes">
+      <ion-label>
+        <ion-icon name="settings-outline"></ion-icon>
+        Ajustes
       </ion-label>
     </ion-item>
     <ion-item>

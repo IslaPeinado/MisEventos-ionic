@@ -1,7 +1,7 @@
 export default interface EventoInterface {
   idEvento?: string;
   usuarioId?: string;
-  fotoEvento?: string;
+  fotoEvento?: any[];
   tituloEvento: string;
   descripcionEvento: string;
   lugarEvento: string;
