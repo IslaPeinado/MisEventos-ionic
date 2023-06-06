@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       const email = this.FormRegister.value.email;
       const password = this.FormRegister.value.password;
       const displayName = this.FormRegister.value.displayName;
-      const photoURL = this.FormRegister.value.imagenes;
+      const photoURL = this.FormRegister.value.images;
 
       this.userService
         .register(email, password, displayName, photoURL)

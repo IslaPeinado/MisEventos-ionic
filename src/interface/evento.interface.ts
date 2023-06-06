@@ -1,7 +1,7 @@
 export default interface EventoInterface {
   idEvento?: string;
   usuarioId?: string;
-  fotoEvento?: any[];
+  fotoEvento?: string | null;
   tituloEvento: string;
   descripcionEvento: string;
   lugarEvento: string;
@@ -9,3 +9,4 @@ export default interface EventoInterface {
   horaEvento: string;
   regalos?: any[];
 }
+

@@ -43,7 +43,7 @@ export class AddRegaloComponent implements OnInit {
   async onSubmit() {
 
     const regalo = {
-      imagenRegalo: await this.eventoService.uploadImage(this.formRegalo.value.imagenRegalo),
+      //imagenRegalo: await this.eventoService.uploadImage(this.formRegalo.value.imagenRegalo),
       nombreRegalo: this.formRegalo.value.nombreRegalo,
       descripcionRegalo: this.formRegalo.value.descripcionRegalo,
       marcaRegalo: this.formRegalo.value.marcaRegalo,

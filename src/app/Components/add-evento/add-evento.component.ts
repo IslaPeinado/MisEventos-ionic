@@ -4,7 +4,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EventoService} from "../../../services/evento.service";
 import {Router} from "@angular/router";
 import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
-import EventoInterface from "../../../interface/evento.interface";
 
 @Component({
   selector: 'app-add-evento',
@@ -15,6 +14,7 @@ export class AddEventoComponent implements OnInit {
 
   formEvento: FormGroup;
   private imagenes: any[];
+  private img: any;
 
 
   constructor(
@@ -32,6 +32,7 @@ export class AddEventoComponent implements OnInit {
       lugarEvento: new FormControl('', [Validators.required]),
       diaEvento: new FormControl('', [Validators.required]),
       horaEvento: new FormControl('', [Validators.required]),
+
     });
 
     // Obtener el valor de diaEvento y convertirlo a una cadena de texto
@@ -58,50 +59,25 @@ export class AddEventoComponent implements OnInit {
   ngOnInit() {
   }
 
-  //async onSubmit() {
-  //  console.log(this.formEvento.value);
-  //  const response = await this.eventoService.addEvento(this.formEvento.value);
-  //  console.log(response);
-  //  if (response) {
-  //    this.presentToast('Evento creado correctamente');
-  //    this.router.navigate(['/inicio/list-evento']);
-  //  } else {
-  //    this.presentToast('No se ha podido crear el evento');
-  //  }
-  //}
 
-  async onSubmit() {
+  onSubmit() {
+    if (this.formEvento.valid) {
 
-    const usuarioId = this.formEvento.value.usuarioId;
-    const fotoEvento = this.formEvento.value.imagenes;
-    const tituloEvento = this.formEvento.value.tituloEvento;
-    const descripcionEvento = this.formEvento.value.descripcionEvento;
-    const lugarEvento = this.formEvento.value.lugarEvento;
-    const diaEvento = this.formEvento.value.diaEvento;
-    const horaEvento = this.formEvento.value.horaEvento;
+      this.formEvento.value.fotoEvento = this.img;
 
+      this.eventoService
+        .addEvento(this.formEvento.value)
+        .then(response => {
+          console.log(response);
+          this.presentToast('Evento creado correctamente');
+          this.router.navigate(['/inicio/list-evento']);
+        })
+        .catch(error => {
+          console.log(error);
+          this.presentToast('No se ha podido crear el evento');
+        })
+    }
 
-    const evento: EventoInterface = {
-      usuarioId: usuarioId,
-      fotoEvento: fotoEvento,
-      tituloEvento: tituloEvento,
-      descripcionEvento: descripcionEvento,
-      lugarEvento: lugarEvento,
-      diaEvento: diaEvento,
-      horaEvento: horaEvento
-    };
-
-    this.eventoService
-      .addEvento(evento)
-      .then(response => {
-        console.log(response);
-        this.presentToast('Evento creado correctamente');
-        this.router.navigate(['/inicio/list-evento']);
-      })
-      .catch(error => {
-        console.log(error);
-        this.presentToast('No se ha podido crear el evento');
-      })
   }
 
   protected readonly onsubmit = onsubmit;
@@ -115,19 +91,23 @@ export class AddEventoComponent implements OnInit {
     toast.present();
   }
 
-  uploadImage($event: any) {
-    const file = $event.target.files[0];
+  uploadImage(event: any) {
+    const file = event.target.files[0];
     console.log(file);
 
     const imgRef = ref(this.storage, `imagenes/${file.name}`);
 
     uploadBytes(imgRef, file)
-      .then(response => {
-        console.log(response)
+      .then(async (response) => {
+        console.log(response);
+        const url = await getDownloadURL(imgRef);
+        this.img = url;
+        console.log(url);
         this.getImages();
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
+
 
   getImages() {
     const imagesRef = ref(this.storage, 'images');
@@ -144,4 +124,11 @@ export class AddEventoComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
+  generateRef() {
+    const id = Math.random().toString(36).substring(2);
+    return id;
+  }
+
 }
+
+
