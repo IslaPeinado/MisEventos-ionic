@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Auth} from "@angular/fire/auth";
 import {EventoService} from "../../../services/evento.service";
-import EventoInterface from "../../../interface/evento.interface";
+import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
+import {Router} from "@angular/router";
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-add-regalo',
@@ -12,59 +13,94 @@ import EventoInterface from "../../../interface/evento.interface";
 export class AddRegaloComponent implements OnInit {
 
   formRegalo: FormGroup;
-  eventos: EventoInterface[]
+  private imagenes: any[];
+  private img: any;
 
   constructor(
     private eventoService: EventoService,
-    private auth: Auth,
+    private router: Router,
+    private toastController: ToastController,
+    private storage: Storage
   ) {
+    this.imagenes = [];
+
+
     this.formRegalo = new FormGroup({
-      imagenRegalo: new FormControl(null),
+      imagenRegalo: new FormControl(),
       nombreRegalo: new FormControl('', [Validators.required]),
       descripcionRegalo: new FormControl('', [Validators.required]),
       marcaRegalo: new FormControl('', [Validators.required]),
       tallaRegalo: new FormControl('', [Validators.required]),
       precioRegalo: new FormControl('', [Validators.required]),
       linkRegalo: new FormControl('', [Validators.required]),
-    }),
-      this.eventos = [
-        {
-          idEvento: '',
-          tituloEvento: '',
-          descripcionEvento: '',
-          lugarEvento: '',
-          diaEvento: '',
-          horaEvento: '',
-        }
-      ];
-  }
-
-
-  async onSubmit() {
-
-    const regalo = {
-      //imagenRegalo: await this.eventoService.uploadImage(this.formRegalo.value.imagenRegalo),
-      nombreRegalo: this.formRegalo.value.nombreRegalo,
-      descripcionRegalo: this.formRegalo.value.descripcionRegalo,
-      marcaRegalo: this.formRegalo.value.marcaRegalo,
-      tallaRegalo: this.formRegalo.value.tallaRegalo,
-      precioRegalo: this.formRegalo.value.precioRegalo,
-      linkRegalo: this.formRegalo.value.linkRegalo,
-      idEvento: this.eventoService.getEventos().subscribe(
-        eventos => {
-          this.eventos = eventos;
-          console.log(eventos);
-        }
-      )
-    }
-
-    console.log(this.formRegalo.value);
-    const response = await this.eventoService.addRegalo(this.formRegalo.value);
-    console.log(response);
+    });
   }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    if (this.formRegalo.valid) {
+      this.formRegalo.value.imagenRegalo = this.img;
+
+      this.eventoService
+        .addRegalo(this.formRegalo.value)
+        .then(response => {
+          console.log(response);
+          this.presentToast('Creando regalo...');
+        })
+        .catch(error => {
+          console.error('Error al crear el regalo', error)
+          this.presentToast('Error al crear el regalo');
+        });
+    }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000, // Duración del Toast en milisegundos
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+  uploadImage(event: any) {
+    const file = event.target.files[0];
+    console.log(file);
+
+    const imgRef = ref(this.storage, `imagenes/${file.name}`);
+
+    uploadBytes(imgRef, file)
+      .then(async (response) => {
+        console.log(response);
+        const url = await getDownloadURL(imgRef);
+        this.img = url;
+        console.log(url);
+        this.getImages();
+      })
+      .catch((error) => console.log(error));
+  }
+
+
+  getImages() {
+    const imagesRef = ref(this.storage, 'images');
+
+    listAll(imagesRef)
+      .then(async response => {
+        console.log(response);
+        this.imagenes = [];
+        for (let item of response.items) {
+          const url = await getDownloadURL(item);
+          this.imagenes.push(url);
+        }
+      })
+      .catch(error => console.log(error));
+  }
+
+  generateRef() {
+    const id = Math.random().toString(36).substring(2);
+    return id;
+  }
 }
 
