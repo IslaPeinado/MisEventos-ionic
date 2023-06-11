@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {addDoc, collection, collectionData, deleteDoc, doc, Firestore} from '@angular/fire/firestore';
+import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, updateDoc} from '@angular/fire/firestore';
 import {BehaviorSubject, Observable} from 'rxjs';
 import EventoInterface from "../interface/evento.interface";
 import RegaloInterface from "../interface/regalo.interface";
@@ -32,12 +32,17 @@ export class EventoService {
 
 // ------------------ EVENTOS ------------------
 
-  addEvento(evento: EventoInterface) {
+  addEvento(evento: EventoInterface, regalo: RegaloInterface) {
     const user = this.auth.currentUser; // Obtener el usuario actualmente autenticado
     if (user) {
       evento.usuarioId = user.uid; // Asignar el ID del usuario al evento
       const eventoRef = collection(this.firestore, 'eventos');
       return addDoc(eventoRef, evento);
+      if (evento.regalos != null) {
+        evento.idEvento = evento.idEvento;
+        const regaloRef = collection(this.firestore, `eventos/${evento.idEvento}/regalos`);
+        return addDoc(regaloRef, regalo);
+      }
     } else {
       return Promise.reject(new Error('No hay usuario autenticado')); // Manejar el caso de que no haya usuario autenticado
     }
@@ -54,10 +59,17 @@ export class EventoService {
   }
 
 
-  deleteEvento(evento: EventoInterface) {
-    const eventoRef = doc(this.firestore, 'eventos/${idEvento}');
+  getEventoByIdEvento(idEvento: string) {
+    const eventoRef = doc(this.firestore, `eventos/${idEvento}`);
+    return getDoc(eventoRef);
+  }
+
+  deleteEvento(idEvento: string) {
+    const eventoRef = doc(this.firestore, `eventos/${idEvento}`);
     return deleteDoc(eventoRef);
   }
+
+
 
 
 // ------------------ REGALOS ------------------
@@ -66,13 +78,13 @@ export class EventoService {
     return addDoc(regaloRef, regalo);
   }
 
-  getRegalos(evnto: EventoInterface): Observable<RegaloInterface[]> {
-    const regaloRef = collection(this.firestore, `eventos/${evnto.idEvento}regalos`);
-    return collectionData(regaloRef, {idField: 'idRegalo'}) as Observable<RegaloInterface[]>;
+  getRegalosByIdEventoAndIdRegalo(idEvento: string, idRegalo: string) {
+    const regaloRef = doc(this.firestore, `eventos/${idEvento}/regalos/${idRegalo}`);
+    return getDoc(regaloRef);
   }
 
-  deleteRegalo(regalo: RegaloInterface, evnto: EventoInterface) {
-    const regaloRef = doc(this.firestore, `eventos/${regalo.idEvento}/regalos/${regalo.idRegalo}`);
+  deleteRegalo(idEvento: string, idRegalo: string) {
+    const regaloRef = doc(this.firestore, `eventos/${idEvento}/regalos/${idRegalo}`);
     return deleteDoc(regaloRef);
   }
 

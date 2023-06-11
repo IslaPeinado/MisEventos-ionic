@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis eventos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true"
+             (ionScrollStart)="handleScrollStart()"
+             (ionScroll)="handleScroll($any($event))"
+             (ionScrollEnd)="handleScrollEnd()"
+             class="ion-padding">
+  <div *ngIf="evento">
+    <img alt="foto del evento" [src]="evento.fotoEvento" width="500" height="auto">
+    <ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h2>{{ evento.tituloEvento }}</h2>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-button color="tertiary" shape="round" (click)="eliminarEvento()">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+            <!--<ion-button (click)="editarEvento()">
+              <ion-icon name="pencil-sharp"></ion-icon>
+            </ion-button>-->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <p>Descripción: {{ evento.descripcionEvento }}</p>
+      <p>Lugar: {{ evento.lugarEvento }}</p>
+      <p>Fecha: {{ evento.diaEvento }}</p>
+      <p>Hora: {{ evento.horaEvento }}</p>
+    </ion-label>
+  </div>
+  <!--  <ion-searchbar class="custom" [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>-->
+  <div *ngIf="evento.regalos">
+    <h2>Regalos</h2>
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item *ngFor="let regalo of evento.regalos">
+              <ion-thumbnail slot="start">
+                <img alt="foto del evento" src="{{regalo.fotoRegalo}}">
+              </ion-thumbnail>
+              <ion-label>
+                <h2>{{ regalo.nombreRegalo }}</h2>
+                <p>Descripción: {{ regalo.descripcionRegalo }}</p>
+                <p>Talla o modelo: {{ regalo.tallaRegalo }}</p>
+                <p>Precio: {{ regalo.precioRegalo }}</p>
+                <p>Enlace: {{ regalo.enlaceRegalo }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </div>
+  <div *ngIf="!evento.regalos">
+    <h2>No hay regalos</h2>
+  </div>
+</ion-content>
+
+

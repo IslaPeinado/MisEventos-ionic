@@ -68,7 +68,7 @@
         <ion-checkbox formControlName="terms" (ionChange)="handleTermsChange($event)"></ion-checkbox>
       </ion-item>
       <br>
-      <ion-button expand="block" shape="round" expand="block" type="submit"
+      <ion-button expand="block" color="tertiary" shape="round" expand="block" type="submit"
                   [disabled]="!FormRegister.controls['terms'].value">Enviar
       </ion-button>
       <ion-card-content class="ion-text-center">¿Ya tienes cuenta? <a routerLink="/login">Iniciar sesión</a>

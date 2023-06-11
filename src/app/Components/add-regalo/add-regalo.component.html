@@ -7,6 +7,7 @@
           type="file"
           class="form-control"
           accept="image/*"
+          (change)="uploadImage($event)"
           id="img" hidden>
         </ion-input>
       </ion-item>
@@ -78,10 +79,10 @@
       </ion-item>
       <ion-row>
         <ion-col>
-          <ion-button color="primary" expand="block" routerLink="/inicio/">Añadir otro</ion-button>
+          <ion-button color="tertiary" expand="block" routerLink="/inicio/">Añadir otro</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="primary" expand="block" routerLink="/inicio/list-evento">Finalizar</ion-button>
+          <ion-button color="tertiary" expand="block" routerLink="/inicio/list-evento">Finalizar</ion-button>
         </ion-col>
       </ion-row>
     </ion-list>

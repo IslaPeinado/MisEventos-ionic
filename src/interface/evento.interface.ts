@@ -1,3 +1,5 @@
+import {Tregalo} from "./regalo.interface";
+
 export default interface EventoInterface {
   idEvento?: string;
   usuarioId?: string;
@@ -7,6 +9,6 @@ export default interface EventoInterface {
   lugarEvento: string;
   diaEvento: string;
   horaEvento: string;
-  regalos?: any[];
+  regalos?: Tregalo[];
 }
 

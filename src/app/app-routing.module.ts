@@ -48,6 +48,10 @@ const routes: Routes = [
         ...canActivate(() => redirectUnauthorizedTo(['/login']))
       },
       {
+        path: 'one-evento/:idEvento',
+        loadChildren: () => import('./Components/one-evento/one-evento.module').then(m => m.OneEventoModule),
+      },
+      {
         path: 'add-evento',
         loadChildren: () => import('./Components/add-evento/add-evento.module').then(m => m.AddEventoModule),
         ...canActivate(() => redirectUnauthorizedTo(['/login']))

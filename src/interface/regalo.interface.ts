@@ -3,7 +3,14 @@ export default interface RegaloInterface {
   fotoRegalo?: string;
   nombreRegalo: string;
   descripcionRegalo: string;
+  tallaRegalo: string;
   precioRegalo: string;
-  imagenRegalo: string;
   idEvento: string;
 }
+
+export type Tregalo = {
+  fotoRegalo?: string;
+  nombreRegalo: string;
+  descripcionRegalo: string;
+  precioRegalo: string;
+};

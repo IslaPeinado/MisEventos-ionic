@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   termsAccepted = false;
   confirmPasswordInvalid = false;
   private imagenes: any[];
+  private img: any;
 
 
   constructor(
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
     private storage: Storage
   ) {
     this.imagenes = [];
+
     this.FormRegister = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -36,14 +38,18 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onSubmit() {
     if (this.FormRegister.valid) {
+
+      this.FormRegister.value.photoURL = this.img;
+
       const email = this.FormRegister.value.email;
       const password = this.FormRegister.value.password;
       const displayName = this.FormRegister.value.displayName;
-      const photoURL = this.FormRegister.value.images;
+      const photoURL = this.FormRegister.value.photoURL;
 
       this.userService
         .register(email, password, displayName, photoURL)
@@ -96,19 +102,23 @@ export class RegisterComponent implements OnInit {
     toast.present();
   }
 
-  uploadImage($event: any) {
-    const file = $event.target.files[0];
+  uploadImage(event: any) {
+    const file = event.target.files[0];
     console.log(file);
 
     const imgRef = ref(this.storage, `imagenes/${file.name}`);
 
     uploadBytes(imgRef, file)
-      .then(response => {
-        console.log(response)
+      .then(async (response) => {
+        console.log(response);
+        const url = await getDownloadURL(imgRef);
+        this.img = url;
+        console.log(url);
         this.getImages();
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
+
 
   getImages() {
     const imagesRef = ref(this.storage, 'images');
@@ -123,6 +133,11 @@ export class RegisterComponent implements OnInit {
         }
       })
       .catch(error => console.log(error));
+  }
+
+  generateRef() {
+    const id = Math.random().toString(36).substring(2);
+    return id;
   }
 
 }

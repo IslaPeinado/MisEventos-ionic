@@ -12,9 +12,17 @@ import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/
 })
 export class AddEventoComponent implements OnInit {
 
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
   formEvento: FormGroup;
+  formRegalo: FormGroup;
   private imagenes: any[];
   private img: any;
+  private regalos: any[];
 
 
   constructor(
@@ -24,16 +32,28 @@ export class AddEventoComponent implements OnInit {
     private storage: Storage
   ) {
     this.imagenes = [];
+    this.regalos = [];
 
     this.formEvento = new FormGroup({
-      fotoEvento: new FormControl(),
+      fotoEvento: new FormControl(''),
       tituloEvento: new FormControl('', [Validators.required]),
       descripcionEvento: new FormControl('', [Validators.required]),
       lugarEvento: new FormControl('', [Validators.required]),
       diaEvento: new FormControl('', [Validators.required]),
       horaEvento: new FormControl('', [Validators.required]),
-
+      regalos: new FormControl(''),
     });
+
+    this.formRegalo = new FormGroup({
+      imagenRegalo: new FormControl(),
+      nombreRegalo: new FormControl('', [Validators.required]),
+      descripcionRegalo: new FormControl('', [Validators.required]),
+      marcaRegalo: new FormControl(),
+      tallaRegalo: new FormControl(),
+      precioRegalo: new FormControl('', [Validators.required]),
+      linkRegalo: new FormControl(),
+    });
+
 
     // Obtener el valor de diaEvento y convertirlo a una cadena de texto
     const diaEventoControl = this.formEvento.get('diaEvento');
@@ -63,21 +83,42 @@ export class AddEventoComponent implements OnInit {
   onSubmit() {
     if (this.formEvento.valid) {
 
-      this.formEvento.value.fotoEvento = this.img;
+     this.formEvento.value.fotoEvento = this.img;
+     this.formEvento.value.regalos = this.regalos;
 
-      this.eventoService
-        .addEvento(this.formEvento.value)
-        .then(response => {
-          console.log(response);
-          this.presentToast('Evento creado correctamente');
-          this.router.navigate(['/inicio/list-evento']);
-        })
-        .catch(error => {
-          console.log(error);
-          this.presentToast('No se ha podido crear el evento');
-        })
+
+     this.eventoService
+       .addEvento(this.formEvento.value, this.formEvento.value.regalos)
+       .then(response => {
+         console.log(response);
+         this.presentToast('Evento creado correctamente');
+         this.router.navigate(['/inicio/list-evento']);
+       })
+       .catch(error => {
+         console.log(error);
+         this.presentToast('No se ha podido crear el evento');
+       })
+
     }
 
+    console.log(this.formEvento.value);
+  }
+
+  onSubmitRegalo() {
+    console.log(this.formRegalo.value);
+    if (this.formRegalo.valid) {
+      this.regalos?.push(this.formRegalo.value);
+      this.formRegalo.reset({
+        imagenRegalo: '',
+        nombreRegalo: '',
+        descripcionRegalo: '',
+        marcaRegalo: '',
+        tallaRegalo: '',
+        precioRegalo: '',
+        linkRegalo: '',
+      });
+    }
+    this.closeModal();
   }
 
   protected readonly onsubmit = onsubmit;
@@ -124,11 +165,16 @@ export class AddEventoComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
+
   generateRef() {
     const id = Math.random().toString(36).substring(2);
     return id;
   }
 
+
+  closeModal() {
+    this.setOpen(false);
+  }
 }
 
 

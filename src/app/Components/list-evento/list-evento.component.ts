@@ -51,10 +51,10 @@ export class ListEventoComponent implements OnInit {
     );
   }
 
-  onclick(idEvento: string) {
-   if (idEvento) {
-      this.router.navigate(['/evento', idEvento]);
-    }
+
+
+  verEvento(evento: EventoInterface) {
+    this.router.navigate(['/inicio/one-evento/', evento.idEvento]);
   }
 
 }

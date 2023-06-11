@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ListRegaloComponent } from './list-regalo.component';
+import { OneEventoComponent } from './one-evento.component';
 
-describe('ListRegaloComponent', () => {
-  let component: ListRegaloComponent;
-  let fixture: ComponentFixture<ListRegaloComponent>;
+describe('OneEventoComponent', () => {
+  let component: OneEventoComponent;
+  let fixture: ComponentFixture<OneEventoComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListRegaloComponent ],
+      declarations: [ OneEventoComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListRegaloComponent);
+    fixture = TestBed.createComponent(OneEventoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
