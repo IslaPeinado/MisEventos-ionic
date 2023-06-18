@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true" class="no-scroll">
-  <form [formGroup]="formRegalo" (ngSubmit)="onSubmit()">
+  <form [formGroup]="formRegalo" (ngSubmit)="onSubmit($event)">
     <ion-list lines="non">
       <ion-item>
         <ion-input

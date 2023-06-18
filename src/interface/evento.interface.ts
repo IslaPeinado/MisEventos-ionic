@@ -2,7 +2,8 @@ import {Tregalo} from "./regalo.interface";
 
 export default interface EventoInterface {
   idEvento?: string;
-  usuarioId?: string;
+  anfitrionId?: string;
+  invitadoId?: string;
   fotoEvento?: string | null;
   tituloEvento: string;
   descripcionEvento: string;

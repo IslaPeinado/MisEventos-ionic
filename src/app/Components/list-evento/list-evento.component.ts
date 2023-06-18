@@ -4,7 +4,8 @@ import EventoInterface from "../../../interface/evento.interface";
 import {Router} from "@angular/router";
 import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
 import {Auth, User} from "@angular/fire/auth";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
+import {collection, collectionData} from "@angular/fire/firestore";
 
 
 @Component({
@@ -31,13 +32,16 @@ export class ListEventoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.currentUserSubject = this.eventoService.getCurrentUser();
+    this.eventoService.getEventosAnfitrion().subscribe((eventos) => {
 
-    this.eventoService.getEventos().subscribe(
-      eventos => {
-        this.eventos = eventos;
-        console.log(eventos);
-      }
-    );
+      this.eventoService.getEventos().subscribe(
+        eventos => {
+          this.eventos = eventos;
+          console.log(eventos);
+        }
+      );
+    });
   }
 
 
@@ -56,5 +60,7 @@ export class ListEventoComponent implements OnInit {
   verEvento(evento: EventoInterface) {
     this.router.navigate(['/inicio/one-evento/', evento.idEvento]);
   }
+
+
 
 }

@@ -99,34 +99,34 @@ export class UserService {
     return this.currentUserSubject;
   }
 
-  getAdditionalUserInfo(): Promise<any> {
-    const user = this.auth.currentUser;
-
-    if (user) {
-      return user.getIdTokenResult()
-        .then((idTokenResult) => {
-          const token = idTokenResult.token;
-          const email = user.email;
-          const displayName = user.displayName;
-          // Obtén otras propiedades del usuario según tus necesidades
-
-          const additionalUserInfo = {
-            token,
-            email,
-            displayName,
-            // Agrega otras propiedades del usuario según tus necesidades
-          };
-
-          return additionalUserInfo;
-        })
-        .catch((error) => {
-          console.log('Error al obtener información adicional del usuario:', error);
-          throw error;
-        });
-    } else {
-      return Promise.reject(new Error('No hay usuario autenticado'));
-    }
-  }
+  //getAdditionalUserInfo(): Promise<any> {
+  //  const user = this.auth.currentUser;
+//
+  //  if (user) {
+  //    return user.getIdTokenResult()
+  //      .then((idTokenResult) => {
+  //        const token = idTokenResult.token;
+  //        const email = user.email;
+  //        const displayName = user.displayName;
+  //        // Obtén otras propiedades del usuario según tus necesidades
+//
+  //        const additionalUserInfo = {
+  //          token,
+  //          email,
+  //          displayName,
+  //          // Agrega otras propiedades del usuario según tus necesidades
+  //        };
+//
+  //        return additionalUserInfo;
+  //      })
+  //      .catch((error) => {
+  //        console.log('Error al obtener información adicional del usuario:', error);
+  //        throw error;
+  //      });
+  //  } else {
+  //    return Promise.reject(new Error('No hay usuario autenticado'));
+  //  }
+  //}
 
 // -------- Métodos de actualización de información del usuario --------
 

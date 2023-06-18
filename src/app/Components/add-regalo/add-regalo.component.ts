@@ -111,7 +111,4 @@ export class AddRegaloComponent implements OnInit {
     const id = Math.random().toString(36).substring(2);
     return id;
   }
-
-
 }
-
