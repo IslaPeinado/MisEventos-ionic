@@ -32,21 +32,17 @@ export class EventoService {
 
 // ------------------ EVENTOS ------------------
 
-  addEvento(evento: EventoInterface, regalo: RegaloInterface) {
-    const user = this.auth.currentUser; // Obtener el usuario actualmente autenticado
-    if (user) {
-      evento.usuarioId = user.uid; // Asignar el ID del usuario al evento
-      const eventoRef = collection(this.firestore, 'eventos');
-      return addDoc(eventoRef, evento);
-      if (evento.regalos != null) {
-        evento.idEvento = evento.idEvento;
-        const regaloRef = collection(this.firestore, `eventos/${evento.idEvento}/regalos`);
-        return addDoc(regaloRef, regalo);
-      }
-    } else {
-      return Promise.reject(new Error('No hay usuario autenticado')); // Manejar el caso de que no haya usuario autenticado
-    }
+addEvento(evento: EventoInterface) {
+  const user = this.auth.currentUser; // Obtener el usuario actualmente autenticado
+  if (user) {
+    evento.anfitrionId = user.uid; // Asignar el ID del usuario al evento
+    const eventoRef = collection(this.firestore, 'eventos');
+    return addDoc(eventoRef, evento);
+  } else {
+    return Promise.reject(new Error('No hay usuario autenticado')); // Manejar el caso de que no haya usuario autenticado
   }
+}
+
 
   //addEvento(evento: EventoInterface) {
   //  const eventoRef = collection(this.firestore, 'eventos');
