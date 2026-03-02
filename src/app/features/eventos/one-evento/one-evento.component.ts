@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {EventoService} from "../../../services/evento.service";
-import RegaloInterface from "../../../interface/regalo.interface";
+import {EventoService} from "../../../core/services/evento.service";
+import RegaloInterface from "../../../core/models/regalo.interface";
 import { ScrollDetail } from '@ionic/angular';
-import EventoInterface from "../../../interface/evento.interface";
+import EventoInterface from "../../../core/models/evento.interface";
 
 @Component({
   selector: 'app-one-evento',

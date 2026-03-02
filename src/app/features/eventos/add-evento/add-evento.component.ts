@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastController} from "@ionic/angular";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {EventoService} from "../../../services/evento.service";
+import {EventoService} from "../../../core/services/evento.service";
 import {Router} from "@angular/router";
 import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
 

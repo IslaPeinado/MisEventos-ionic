@@ -2,7 +2,7 @@
 
 ## Interface `EventoInterface`
 
-Archivo: `src/interface/evento.interface.ts`
+Archivo: `src/app/core/models/evento.interface.ts`
 
 Campos:
 
@@ -19,7 +19,7 @@ Campos:
 
 ## Interface `RegaloInterface`
 
-Archivo: `src/interface/regalo.interface.ts`
+Archivo: `src/app/core/models/regalo.interface.ts`
 
 Campos:
 
@@ -40,7 +40,7 @@ Tambien existe el tipo `Tregalo`, usado para regalos embebidos en el evento:
 
 ## Interface `UserInterface`
 
-Archivo: `src/interface/user.interface.ts`
+Archivo: `src/app/core/models/user.interface.ts`
 
 Campos:
 

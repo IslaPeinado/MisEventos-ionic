@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EventoService} from "../../../services/evento.service";
-import EventoInterface from "../../../interface/evento.interface";
+import {EventoService} from "../../../core/services/evento.service";
+import EventoInterface from "../../../core/models/evento.interface";
 import {Router} from "@angular/router";
 import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage';
 import {Auth, User} from "@angular/fire/auth";

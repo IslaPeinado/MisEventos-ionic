@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {EventoService} from "../../../services/evento.service";
+import {EventoService} from "../../../core/services/evento.service";
 import {getDownloadURL, listAll, ref, Storage, uploadBytes} from "@angular/fire/storage";
 import {Router} from "@angular/router";
 import {ToastController} from "@ionic/angular";
-import RegaloInterface from "../../../interface/regalo.interface";
+import RegaloInterface from "../../../core/models/regalo.interface";
 
 @Component({
   selector: 'app-add-regalo',

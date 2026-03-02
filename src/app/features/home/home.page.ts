@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TabMenuComponent} from "../Components/tab-menu/tab-menu.component";
+import {TabMenuComponent} from "../../shared/layout/tab-menu/tab-menu.component";
 import {NavController} from "@ionic/angular";
 
 @Component({

@@ -10,7 +10,7 @@ En `list-evento.component.ts` se llama a:
 this.eventoService.getEventosAnfitrion()
 ```
 
-Ese metodo no existe en `src/services/evento.service.ts` revisado. Esto provocaria error de compilacion o de tipos en un entorno completo.
+Ese metodo no existe en `src/app/core/services/evento.service.ts` revisado. Esto provocaria error de compilacion o de tipos en un entorno completo.
 
 ## 2. Ruta enlazada pero no registrada
 

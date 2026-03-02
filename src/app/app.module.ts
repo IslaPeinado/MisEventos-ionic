@@ -7,7 +7,7 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from "@angular/forms";
-import {TabMenuComponent} from "./Components/tab-menu/tab-menu.component";
+import {TabMenuComponent} from "./shared/layout/tab-menu/tab-menu.component";
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {environment} from '../environments/environment';
 import {provideDatabase, getDatabase} from '@angular/fire/database';

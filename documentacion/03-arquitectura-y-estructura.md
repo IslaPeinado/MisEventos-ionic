@@ -5,13 +5,20 @@
 ```text
 src/
   app/
-    Components/
-    home/
+    core/
+      models/
+      services/
+    features/
+      auth/
+      content/
+      eventos/
+      home/
+      profile/
+    shared/
+      layout/
     app.module.ts
     app-routing.module.ts
   environments/
-  interface/
-  services/
   assets/
   theme/
 ```
@@ -61,7 +68,7 @@ La seccion `inicio` usa `TabMenuComponent` como contenedor visual.
 
 ### `UserService`
 
-Ubicacion: `src/services/user.service.ts`
+Ubicacion: `src/app/core/services/user.service.ts`
 
 Responsabilidades:
 
@@ -76,7 +83,7 @@ Expone un `BehaviorSubject<User | null>` para el usuario autenticado actual.
 
 ### `EventoService`
 
-Ubicacion: `src/services/evento.service.ts`
+Ubicacion: `src/app/core/services/evento.service.ts`
 
 Responsabilidades implementadas:
 
@@ -92,7 +99,7 @@ Tambien contiene codigo comentado relacionado con Firebase Storage.
 
 ## Interfaces de dominio
 
-Ubicacion: `src/interface/`
+Ubicacion: `src/app/core/models/`
 
 - `evento.interface.ts`
 - `regalo.interface.ts`

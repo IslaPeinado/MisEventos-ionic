@@ -19,7 +19,7 @@
 
 ### Login
 
-Componente: `src/app/Components/login/login.component.ts`
+Componente: `src/app/features/auth/login/login.component.ts`
 
 Funciones principales:
 
@@ -31,7 +31,7 @@ Funciones principales:
 
 ### Registro
 
-Componente: `src/app/Components/register/register.component.ts`
+Componente: `src/app/features/auth/register/register.component.ts`
 
 Funciones principales:
 
@@ -46,7 +46,7 @@ Funciones principales:
 
 ### Listado
 
-Componente: `src/app/Components/list-evento/list-evento.component.ts`
+Componente: `src/app/features/eventos/list-evento/list-evento.component.ts`
 
 Comportamiento:
 
@@ -57,7 +57,7 @@ Comportamiento:
 
 ### Alta de evento
 
-Componente: `src/app/Components/add-evento/add-evento.component.ts`
+Componente: `src/app/features/eventos/add-evento/add-evento.component.ts`
 
 Comportamiento:
 
@@ -69,7 +69,7 @@ Comportamiento:
 
 ### Detalle de evento
 
-Componente: `src/app/Components/one-evento/one-evento.component.ts`
+Componente: `src/app/features/eventos/one-evento/one-evento.component.ts`
 
 Comportamiento:
 
@@ -81,7 +81,7 @@ Comportamiento:
 
 ## Flujo de perfil
 
-Componente: `src/app/Components/perfil/perfil.component.ts`
+Componente: `src/app/features/profile/perfil/perfil.component.ts`
 
 Comportamiento:
 
@@ -93,7 +93,7 @@ Comportamiento:
 
 ## Navegacion inferior
 
-Componente: `src/app/Components/tab-menu/tab-menu.component.html`
+Componente: `src/app/shared/layout/tab-menu/tab-menu.component.html`
 
 La barra inferior muestra accesos a:
 
