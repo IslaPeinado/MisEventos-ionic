@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, updateDoc} from '@angular/fire/firestore';
 import {BehaviorSubject, Observable} from 'rxjs';
-import EventoInterface from "../interface/evento.interface";
-import RegaloInterface from "../interface/regalo.interface";
+import EventoInterface from "../models/evento.interface";
+import RegaloInterface from "../models/regalo.interface";
 import {Storage} from '@angular/fire/storage';
 import {UserService} from "./user.service";
 import {Auth, User} from "@angular/fire/auth";
